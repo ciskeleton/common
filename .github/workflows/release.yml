@@ -19,7 +19,7 @@ jobs:
       !contains(github.ref_name, 'alpha') &&
       !contains(github.ref_name, 'beta') &&
       !contains(github.ref_name, '+')
-    uses: ianhubnet/.github/.github/workflows/system.yml@main
+    uses: ciskeleton/.github/.github/workflows/system.yml@main
     with:
       package: common
       copy_docs: true
