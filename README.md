@@ -1,6 +1,6 @@
 # 🚀 CiSkeleton Common Assets
 
-This repository contains the **shared back-end and front-end assets** for [CiSkeleton (CSK)](https://github.com/ianhubnet), including:
+This repository contains the **shared back-end and front-end assets** for [CiSkeleton (CSK)](https://github.com/ciskeleton), including:
 
 - 🟦 **JavaScript helpers** (`admin.js`, `main.js`, etc.)
 - 🎨 **CSS files** and variables
@@ -14,7 +14,7 @@ This repository contains the **shared back-end and front-end assets** for [CiSke
 This repository is typically included as a **submodule** in each new project's `content` directory:
 
 ```bash
-git submodule add git@github.com:ianhubnet/csk-common.git content/common
+git submodule add git@github.com:ciskeleton/common.git content/common
 ```
 
 ---
@@ -32,18 +32,18 @@ Please open issues or pull requests for any enhancements.
 
 ## 📦 Related Repositories
 
-- [csk-core](https://github.com/ianhubnet) — Framework core *(Private)*
-- [csk-app-default](https://github.com/ianhubnet/csk-app-default) — Default application template *(Public)*
-- [csk-projects](https://github.com/ianhubnet/csk-projects) — Monorepo for all official CSK projects *(Public index)*
-- [csk-packages](https://github.com/ianhubnet/csk-packages) — Central monorepo for CSK packages *(Public index)*
-- [csk-lang-english](https://github.com/ianhubnet/csk-lang-english) — Default English language pack *(Public)*
-- [csk-theme-classic](https://github.com/ianhubnet/csk-theme-classic) — Default frontend theme *(Public)*
+- [core](https://github.com/ciskeleton/core) — Framework core *(Private)*
+- [app-default](https://github.com/ciskeleton/app-default) — Default application template *(Public)*
+- [projects](https://github.com/ciskeleton/projects) — Monorepo for all official CSK projects *(Public index)*
+- [packages](https://github.com/ciskeleton/packages) — Central monorepo for CSK packages *(Public index)*
+- [lang-english](https://github.com/ciskeleton/lang-english) — Default English language pack *(Public)*
+- [theme-classic](https://github.com/ciskeleton/theme-classic) — Default frontend theme *(Public)*
 
 ---
 
 ## 📖 About CiSkeleton (CSK)
 
-[CiSkeleton (CSK)](https://github.com/ianhubnet/) is a modern, modular foundation built on **CodeIgniter 3**. It offers:
+[CiSkeleton (CSK)](https://github.com/ciskeleton) is a modern, modular foundation built on **CodeIgniter 3**. It offers:
 
 - Modular architecture for scalable projects
 - Multilingual support
