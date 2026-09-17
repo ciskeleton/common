@@ -2611,7 +2611,8 @@ textarea {
 }
 
 .dropdown-menu-scroll {
-	max-block-size: calc(100vh - 12rem);
+	min-block-size: 2.5rem;
+	max-block-size: calc(100vh - 32.5rem);
 	overflow-y: auto;
 	overscroll-behavior: contain;
 }
@@ -3765,22 +3766,12 @@ select.is-valid ~ .select2-container.select2-container--focus .select2-selection
 }
 
 @media (max-width: 48rem) {
-	.dropdown-menu-scroll {
-		max-block-size: calc(100vh - 32rem);
-	}
-
 	.info-box .icon {
 		font-size: 5rem;
 	}
 
 	.info-box .info-box p {
 		font-size: var(--cs-font-size-small);
-	}
-}
-
-@media (max-width: 62rem) {
-	.dropdown-menu-scroll {
-		max-block-size: calc(100vh - 32rem);
 	}
 }
 
