@@ -1,0 +1,23 @@
+name: Issue and PR assignment
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+
+jobs:
+  auto-assign:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Auto-assign issue or PR
+        uses: pozil/auto-assign-issue@v4
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          assignees: bkader
+          numOfAssignee: 1
+          allowSelfAssign: false
