@@ -1213,9 +1213,14 @@
 			toastr.options = {
 				"rtl": csk.config.lang.direction === "rtl",
 				"closeButton": true,
+				"debug": false,
+				"newestOnTop": true,
 				"positionClass": "toast-top-center",
-				"hideDuration": "300",
-				"timeOut": "2500",
+				"preventDuplicates": true,
+				"showDuration": "300",
+				"hideDuration": "1000",
+				"timeOut": "3500",
+				"extendedTimeOut": "1000",
 				"showEasing": "swing",
 				"hideEasing": "linear",
 				"showMethod": "fadeIn",
@@ -1782,7 +1787,7 @@
 		 * @since 1.0.0
 		 */
 		// Put back URL when modal is closed.
-		$(document).on("hidden.bs.modal hidden.bs.offcanvas", "#media-detail, #theme-detail", function(e) {
+		$(document).on("hidden.bs.modal hidden.bs.offcanvas", "#media-detail, #theme-detail, #package-details", function(e) {
 			var url = new URL(window.location.href);
 			for (const key of Array.from(url.searchParams.keys())) {
 				if (key.toLowerCase() === "item") {
