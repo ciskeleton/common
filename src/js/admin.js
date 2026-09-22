@@ -556,6 +556,21 @@
 					document.querySelector(target).style.display = finalValue.length ? "" : "none";
 				}
 			}
+		},
+
+		/**
+		 * Initialize autoplay modals.
+		 * @since 1.0.0
+		 */
+		autoplayModals: function(context) {
+			var $modals = $(context || document)
+				.filter(".modal[data-autoplay]")
+				.add($(context || document).find(".modal[data-autoplay]"));
+
+			$modals.each(function() {
+				bootstrap.Modal.getOrCreateInstance(this).show();
+				this.removeAttribute("data-autoplay");
+			});
 		}
 	};
 
@@ -584,7 +599,9 @@
 			var context = params.context || this,
 				type = params.type || "GET",
 				onSuccess = params.onSuccess || null,
-				onError = params.onError || null;
+				onError = params.onError || null,
+				html = params.html || false,
+				dataType = html ? "html" : (params.dataType || "json");
 
 			// Merge parameters with default ones.
 			params = $.extend(true, {}, params, {
@@ -596,12 +613,12 @@
 				async: true,
 				cache: false,
 				headers: $.extend({}, params.headers || {}, {"X-Requested-With": "XMLHttpRequest"}),
-				dataType: "json",
+				dataType: dataType,
 				success: function(data, textStatus, jqXHR) {
-					// `this` is the jQuery AJAX context (because we set it)
-					csk.ajax._response(data, this);
+					// `this` is the jQuery AJAX context (because we set it).
+					csk.ajax._response(data, this, html);
 					if (typeof onSuccess === "function") {
-						onSuccess.apply(this, arguments)
+						onSuccess.apply(this, arguments);
 					}
 				},
 				error: function(jqXHR, textStatus, errorThrown) {
@@ -651,13 +668,21 @@
 		},
 		/**
 		 * Handle JSON data response sent by csk.ajax.request
-		 * @param  string data Normally, it should be a JSON encoded response.
-		 * @param  object context Execution context
+		 * @param  string  data     Normally, it should be a JSON encoded response.
+		 * @param  object  context  Execution context
+		 * @param  boolean html     Whether the response is HTML.
 		 * @return void
 		 */
-		_response: function(data, context) {
+		_response: function(data, context, html) {
 			var data = data || {},
 				context = context || window;
+
+			// Append HTML responses to the document body.
+			if (html === true) {
+				$("body").append(data);
+				csk.ui.autoplayModals(document);
+				return;
+			}
 
 			// Did we receive a message?
 			if (data?.message?.length) {
@@ -1512,10 +1537,11 @@
 		 * AJAXify anchors with attribute [data-method].
 		 * @since 1.0.0
 		 */
-		$(document).on("click", "a:not([data-confirm])[data-method]", function(e) {
+		$(document).on("click", "a:not([data-confirm])[data-method], button:not([data-confirm])[data-method]", function(e) {
 			var $that = $(this),
 				method = $that.data("method")?.toUpperCase() || "GET",
-				href = $that.attr("ajaxify") || $that.attr("href");
+				href = $that.attr("ajaxify") || $that.attr("href"),
+				html = $that.data("type")?.toLowerCase() === "html";
 
 			if (!href?.length) {
 				return;
@@ -1526,6 +1552,7 @@
 			csk.ajax.request(href, {
 				el: $that,
 				type: method,
+				html: html,
 				beforeSend: function() {
 					if ($that.prop("disabled")) {
 						return;
@@ -1536,10 +1563,14 @@
 				},
 				onSuccess: function(data, textStatus, jqXHR) {
 					// remove disabled property and reload page.
-					csk.ui.toggleDisabled($that[0], false);
-					if (!data.scripts?.length) {
+					if (!html && !data.scripts?.length) {
 						setTimeout(location.reload.bind(location), 1500);
 					}
+				},
+				onComplete: function() {
+					setTimeout(function () {
+						csk.ui.toggleDisabled($that[0], false);
+					}, 100);
 				}
 			});
 		});
@@ -1578,15 +1609,15 @@
 		});
 
 		/**
-		 * If there is a modal within the page, we make sure to display it
+		 * If there is a modal within the page, we make sure to display it.
 		 * @since 1.0.0
-		 * @todo 	FIXME: problem with Summernote JS.
+		 * @todo FIXME: problem with Summernote JS.
 		 */
-		if (typeof $.fn.modal !== "undefined") {
-			var bsModal = $(".modal.modal-land");
-			if (bsModal.length) {
-				bsModal.modal("show");
-			}
+		csk.ui.autoplayModals();
+
+		var $bsModal = $(".modal.modal-land");
+		if ($bsModal.length) {
+			bootstrap.Modal.getOrCreateInstance($bsModal[0]).show();
 		}
 
 		// We make sure to completely remove the modal when closed.
