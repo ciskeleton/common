@@ -604,8 +604,10 @@
 		 */
 		request: function(url, params) {
 			params = params || {};
-			var context = params.context || this,
+			var $el = params.el ? $(params.el) : null,
+				context = params.context || this,
 				type = params.type || "GET",
+				beforeSend = params.beforeSend || null,
 				onSuccess = params.onSuccess || null,
 				onError = params.onError || null,
 				html = params.html || false,
@@ -622,6 +624,14 @@
 				cache: false,
 				headers: $.extend({}, params.headers || {}, {"X-Requested-With": "XMLHttpRequest"}),
 				dataType: dataType,
+				beforeSend: function(jqXHR, settings) {
+					if ($el && $el.length) {
+						csk.ui.toggleDisabled($el[0], true);
+					}
+					if (typeof beforeSend === "function") {
+						return beforeSend.apply(this, arguments);
+					}
+				},
 				success: function(data, textStatus, jqXHR) {
 					// `this` is the jQuery AJAX context (because we set it).
 					csk.ajax._response(data, this, html);
@@ -663,6 +673,10 @@
 			}
 
 			request.complete = function(jqXHR, textStatus) {
+				var $el = request.el ? $(request.el) : null;
+				if ($el && $el.length) {
+					setTimeout(() => csk.ui.toggleDisabled($el[0], false), 100);
+				}
 				if (typeof onComplete === "function") {
 					onComplete.apply(this, arguments);
 				}
@@ -804,7 +818,7 @@
 		},
 		_ping : function() {
 			var self = this;
-			this.nextPing = setTimeout(function() {
+			this.nextPing = setTimeout(() => {
 				csk.ajax.request(self.options.url, {type: "POST"});
 				csk.ping._ping.apply(self);
 			}, self.options.timer);
@@ -1474,15 +1488,9 @@
 							"id": Array.from(multiSelect).join(","),
 							"url": href
 						},
-						beforeSend: function() {
-							if (!$that.prop("disabled")) {
-								csk.ui.toggleDisabled($that[0], true);
-							}
-						},
 						onSuccess: function(data, textStatus, jqXHR) {
-							csk.ui.toggleDisabled($that[0], false);
 							if (!data.scripts?.length) {
-								setTimeout(location.reload.bind(location), 2000);
+								setTimeout(() => location.reload.bind(location), 2000);
 							}
 						}
 					});
@@ -1494,11 +1502,6 @@
 				data: {
 					"id": multiSelect,
 					"url": href
-				},
-				beforeSend: function() {
-					if (!$that.prop("disabled")) {
-						csk.ui.toggleDisabled($that[0], true);
-					}
 				},
 				complete: function() {
 					csk.ui.toggleDisabled($that[0], false);
@@ -1561,24 +1564,11 @@
 				el: $that,
 				type: method,
 				html: html,
-				beforeSend: function() {
-					if ($that.prop("disabled")) {
-						return;
-					}
-
-					// We disable the element before proceeding.
-					csk.ui.toggleDisabled($that[0], true);
-				},
 				onSuccess: function(data, textStatus, jqXHR) {
 					// remove disabled property and reload page.
 					if (!html && !data.scripts?.length) {
-						setTimeout(location.reload.bind(location), 1500);
+						setTimeout(() => location.reload.bind(location), 1500);
 					}
-				},
-				onComplete: function() {
-					setTimeout(function () {
-						csk.ui.toggleDisabled($that[0], false);
-					}, 100);
 				}
 			});
 		});
@@ -1611,7 +1601,7 @@
 				onComplete: function() {
 					$form.trigger("reset");
 					csk.ui.toggleDisabled($form.find("[type=submit]"), false);
-					setTimeout(location.reload.bind(location), 1500);
+					setTimeout(() => location.reload.bind(location), 1500);
 				}
 			});
 		});
@@ -1673,23 +1663,11 @@
 						el: $that,
 						type: method,
 						data: data,
-						beforeSend: function() {
-							if ($that.prop("disabled")) {
-								return;
-							}
-
-							// We disable the element before proceeding.
-							csk.ui.toggleDisabled($that[0], true);
-						},
 						onSuccess: function(data, textStatus, jqXHR) {
 							// reload page only if it has no script
 							if (!data.scripts?.length) {
-								setTimeout(location.reload.bind(location), 1500);
+								setTimeout(() => location.reload.bind(location), 1500);
 							}
-						},
-						onComplete: function(jqXHR, textStatus) {
-							// remove disabled property
-							csk.ui.toggleDisabled($that[0], false);
 						}
 					});
 				} else {
