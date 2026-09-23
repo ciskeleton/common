@@ -559,17 +559,25 @@
 		},
 
 		/**
-		 * Initialize autoplay modals.
+		 * Initialize autoplay overlays.
 		 * @since 1.0.0
 		 */
-		autoplayModals: function(context) {
-			var $modals = $(context || document)
-				.filter(".modal[data-autoplay]")
-				.add($(context || document).find(".modal[data-autoplay]"));
+		autoplayOverlays: function(context) {
+			var $context = $(context || document),
+				$overlays = $context
+					.filter(".modal[data-autoplay], .offcanvas[data-autoplay]")
+					.add($context.find(".modal[data-autoplay], .offcanvas[data-autoplay]"));
 
-			$modals.each(function() {
-				bootstrap.Modal.getOrCreateInstance(this).show();
-				this.removeAttribute("data-autoplay");
+			$overlays.each(function() {
+				var element = this;
+
+				if ($(element).hasClass("modal")) {
+					bootstrap.Modal.getOrCreateInstance(element).show();
+				} else if ($(element).hasClass("offcanvas")) {
+					bootstrap.Offcanvas.getOrCreateInstance(element).show();
+				}
+
+				element.removeAttribute("data-autoplay");
 			});
 		}
 	};
@@ -680,7 +688,7 @@
 			// Append HTML responses to the document body.
 			if (html === true) {
 				$("body").append(data);
-				csk.ui.autoplayModals(document);
+				csk.ui.autoplayOverlays(document);
 				return;
 			}
 
@@ -1609,21 +1617,24 @@
 		});
 
 		/**
-		 * If there is a modal within the page, we make sure to display it.
+		 * If there is an overlay within the page, we make sure to display it.
 		 * @since 1.0.0
-		 * @todo FIXME: problem with Summernote JS.
 		 */
-		csk.ui.autoplayModals();
+		csk.ui.autoplayOverlays();
 
 		var $bsModal = $(".modal.modal-land");
 		if ($bsModal.length) {
 			bootstrap.Modal.getOrCreateInstance($bsModal[0]).show();
 		}
 
-		// We make sure to completely remove the modal when closed.
-		$(document).on("hidden.bs.modal", ".modal:not(.modal-keep)", function(e) {
-			$(this).remove();
-		});
+		// We make sure to completely remove overlays when closed.
+		$(document).on(
+			"hidden.bs.modal hidden.bs.offcanvas",
+			".modal:not(.modal-keep), .offcanvas:not(.offcanvas-keep)",
+			function() {
+				$(this).remove();
+			}
+		);
 
 		/**
 		 * Another way to add a confirmation message before proceeding is
