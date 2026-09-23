@@ -211,9 +211,7 @@
 	--cs-font-size-h6: .715rem;
 	--cs-font-size-small: .75rem;
 	--cs-font-size-smaller: .688rem;
-	--cs-radius-lg: .875rem;
-	--cs-radius-sm: .5rem;
-	--cs-radius-xs: .188rem;
+	--bs-border-radius-xs: .188rem;
 	--cs-shadow-md: 0 .5rem 1.25rem rgba(15, 23, 42, .08);
 	--cs-shadow-sm: 0 .125rem .375rem rgba(15, 23, 42, .06);
 	--cs-surface-bg: #ffffff;
@@ -1036,7 +1034,7 @@ td,
 }
 
 .alert {
-	border-radius: .25rem;
+	border-radius: var(--bs-border-radius);
 	padding: .5rem .625rem;
 }
 
@@ -1116,7 +1114,7 @@ td,
 }
 
 .btn {
-	border-radius: var(--cs-radius-sm);
+	border-radius: var(--bs-border-radius);
 	text-wrap: nowrap !important;
 }
 
@@ -1365,7 +1363,7 @@ td,
 
 .btn-group-xs > .btn,
 .btn-xs {
-	border-radius: var(--cs-radius-xs) !important;
+	border-radius: var(--bs-border-radius-xs) !important;
 	font-size: .65rem !important;
 	line-height: 1.5 !important;
 	padding: .0625rem .312rem;
@@ -1373,17 +1371,17 @@ td,
 
 .btn-group-vertical > .btn {
 	border-radius: 0 !important;
-	margin-left: 0 !important;
+	margin-inline-start: 0 !important;
 }
 
 .btn-group-vertical > .btn:first-child {
-	border-top-left-radius: var(--cs-radius-xs) !important;
-	border-top-right-radius: var(--cs-radius-xs) !important;
+	border-start-start-radius: var(--bs-border-radius-xs) !important;
+	border-start-end-radius: var(--bs-border-radius-xs) !important;
 }
 
 .btn-group-vertical > .btn:last-child {
-	border-bottom-left-radius: var(--cs-radius-xs) !important;
-	border-bottom-right-radius: var(--cs-radius-xs) !important;
+	border-end-start-radius: var(--bs-border-radius-xs) !important;
+	border-end-end-radius: var(--bs-border-radius-xs) !important;
 }
 
 .btn-group-vertical > .btn {
@@ -1395,13 +1393,13 @@ td,
 }
 
 .btn-group-xs > .btn:first-child {
-	border-top-left-radius: var(--cs-radius-xs) !important;
-	border-bottom-left-radius: var(--cs-radius-xs) !important;
+	border-start-start-radius: var(--bs-border-radius-xs) !important;
+	border-end-start-radius: var(--bs-border-radius-xs) !important;
 }
 
 .btn-group-xs > .btn:last-child {
-	border-top-right-radius: var(--cs-radius-xs) !important;
-	border-bottom-right-radius: var(--cs-radius-xs) !important;
+	border-start-end-radius: var(--bs-border-radius-xs) !important;
+	border-end-end-radius: var(--bs-border-radius-xs) !important;
 }
 
 .btn-info {
@@ -2527,7 +2525,7 @@ button.disabled {
 }
 
 .card {
-	border-radius: var(--cs-radius-lg);
+	border-radius: var(--bs-border-radius);
 	box-shadow: var(--cs-shadow-sm);
 	overflow: hidden;
 }
@@ -2562,8 +2560,8 @@ button.disabled {
 }
 
 .tab-content > .card {
-	border-top-left-radius: 0 !important;
-	border-top-right-radius: 0 !important;
+	border-start-start-radius: 0 !important;
+	border-start-end-radius: 0 !important;
 }
 
 .dropdown-divider {
@@ -2689,6 +2687,10 @@ textarea {
 
 .modal-backdrop {
 	display: none !important;
+}
+
+.modal-content {
+	border-radius: var(--bs-border-radius);
 }
 
 .no-select,
@@ -3008,8 +3010,8 @@ table td > input[type="checkbox"] {
    ========================================================================== */
 
 .card.card-file .btn {
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
+	border-start-start-radius: 0;
+	border-start-end-radius: 0;
 }
 
 .card.card-file .card-body {
@@ -3220,7 +3222,7 @@ table td > input[type="checkbox"] {
 }
 
 .info-box {
-	border-radius: var(--cs-radius-lg);
+	border-radius: var(--bs-border-radius);
 	box-shadow: var(--cs-shadow-sm);
 	overflow: hidden;
 	position: relative;
@@ -3351,24 +3353,12 @@ table td > input[type="checkbox"] {
 	background: rgba(var(--bs-dark-rgb), .75);
 }
 
-.theme-inner .theme-screenshot {
-	aspect-ratio: 16 / 9;
-	background-color: var(--cs-surface-muted);
-	border-bottom: .0625rem solid var(--bs-gray-400);
-	border-bottom-color: var(--cs-surface-border);
-	min-block-size: auto;
-	object-fit: cover;
-}
-
-.theme-inner,
 .card.card-file {
-	border-radius: var(--cs-radius-lg);
 	box-shadow: var(--cs-shadow-sm);
 	transition: transform var(--cs-transition-base),
 		box-shadow var(--cs-transition-base);
 }
 
-.theme-inner:hover,
 .card.card-file:hover {
 	box-shadow: var(--cs-shadow-md);
 	transform: translateY(-3px);
@@ -3407,7 +3397,7 @@ tr.highlight-focus > td {
 .input-group > .form-select,
 .select2-container--default .select2-selection {
 	border-color: var(--cs-surface-border);
-	border-radius: var(--cs-radius-sm);
+	border-radius: var(--bs-border-radius);
 	box-shadow: inset 0 1px 2px rgba(15, 23, 42, .025);
 }
 
@@ -3526,7 +3516,7 @@ tr.highlight-focus > td {
 	cursor: pointer;
 	display: inline-block;
 	font-weight: 700;
-	margin-right: .25rem;
+	margin-inline-end: .25rem;
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
@@ -3565,8 +3555,8 @@ tr.highlight-focus > td {
 	border-width: .3125rem .3125rem 0 .3125rem;
 	height: 0;
 	left: 50%;
-	margin-left: -.3125rem;
-	margin-top: -.15625rem;
+	margin-inline-start: -.3125rem;
+	margin-block-start: -.15625rem;
 	position: absolute;
 	top: 50%;
 	width: 0;
@@ -3575,7 +3565,7 @@ tr.highlight-focus > td {
 .select2-container--default .select2-selection--single .select2-selection__clear {
 	color: var(--bs-secondary-color);
 	font-weight: 700;
-	margin-right: 1.5rem;
+	margin-inline-end: 1.5rem;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__clear:hover {
@@ -3587,8 +3577,7 @@ tr.highlight-focus > td {
 	font-family: var(--cs-font-family-default);
 	font-size: inherit;
 	line-height: 1.5;
-	padding-left: 0;
-	padding-right: 0;
+	padding-inline: 0;
 }
 
 .select2-container--default.select2-container--disabled .select2-selection {
@@ -3691,8 +3680,8 @@ tr.highlight-focus > td {
 }
 
 [dir="rtl"] .select2-container--default .select2-selection--single .select2-selection__clear {
-	margin-left: .5rem;
-	margin-right: 0;
+	margin-inline-start: .5rem;
+	margin-inline-end: 0;
 }
 
 select.is-invalid ~ .select2-container .select2-selection {
