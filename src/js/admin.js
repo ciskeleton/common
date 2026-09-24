@@ -1490,7 +1490,7 @@
 						},
 						onSuccess: function(data, textStatus, jqXHR) {
 							if (!data.scripts?.length) {
-								setTimeout(() => location.reload.bind(location), 2000);
+								setTimeout(location.reload.bind(location), 2000);
 							}
 						}
 					});
@@ -1567,7 +1567,7 @@
 				onSuccess: function(data, textStatus, jqXHR) {
 					// remove disabled property and reload page.
 					if (!html && !data.scripts?.length) {
-						setTimeout(() => location.reload.bind(location), 1500);
+						setTimeout(location.reload.bind(location), 1500);
 					}
 				}
 			});
@@ -1601,7 +1601,7 @@
 				onComplete: function() {
 					$form.trigger("reset");
 					csk.ui.toggleDisabled($form.find("[type=submit]"), false);
-					setTimeout(() => location.reload.bind(location), 1500);
+					setTimeout(location.reload.bind(location), 1500);
 				}
 			});
 		});
@@ -1666,7 +1666,7 @@
 						onSuccess: function(data, textStatus, jqXHR) {
 							// reload page only if it has no script
 							if (!data.scripts?.length) {
-								setTimeout(() => location.reload.bind(location), 1500);
+								setTimeout(location.reload.bind(location), 1500);
 							}
 						}
 					});
