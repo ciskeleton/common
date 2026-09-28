@@ -1020,13 +1020,13 @@ td,
    ========================================================================== */
 
 #toast-container {
-	margin-block-start: 2.562rem;
+	margin-block-start: 2.85rem;
 	z-index: 9990;
 }
 
 #toast-container.toast-top-center > div,
 #toast-container.toast-bottom-center > div {
-	border-radius: 0;
+	border-radius: var(--bs-border-radius);
 	box-shadow: none;
 	inline-size: auto;
 	max-inline-size: 31.25rem;
