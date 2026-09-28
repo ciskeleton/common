@@ -377,6 +377,51 @@ td,
 	white-space: nowrap;
 }
 
+body.ajax-loading {
+	cursor: wait;
+}
+
+body.ajax-loading::before {
+	animation: loading-pulse 1.2s ease-in-out infinite;
+	background: var(--cs-color-primary);
+	box-shadow: 0 0 .5rem rgb(from var(--cs-color-danger) r g b / 35%);
+	content: "";
+	height: .188rem;
+	left: 50%;
+	pointer-events: none;
+	position: fixed;
+	top: 0;
+	transform: translateX(-50%);
+	width: 0;
+	z-index: 9999;
+}
+
+@keyframes loading-pulse {
+	0% {
+		opacity: 0;
+		width: 0;
+	}
+
+	15% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 1;
+		width: 45%;
+	}
+
+	85% {
+		opacity: 1;
+		width: 90%;
+	}
+
+	100% {
+		opacity: 0;
+		width: 100%;
+	}
+}
+
 /* ==========================================================================
    Utilities
    ========================================================================== */

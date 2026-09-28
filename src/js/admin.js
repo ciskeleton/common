@@ -625,6 +625,7 @@
 				headers: $.extend({}, params.headers || {}, {"X-Requested-With": "XMLHttpRequest"}),
 				dataType: dataType,
 				beforeSend: function(jqXHR, settings) {
+					document.body.classList.add('ajax-loading');
 					if ($el && $el.length) {
 						csk.ui.toggleDisabled($el[0], true);
 					}
@@ -673,6 +674,7 @@
 			}
 
 			request.complete = function(jqXHR, textStatus) {
+				document.body.classList.remove('ajax-loading');
 				var $el = request.el ? $(request.el) : null;
 				if ($el && $el.length) {
 					setTimeout(() => csk.ui.toggleDisabled($el[0], false), 100);
@@ -708,7 +710,7 @@
 
 			// Did we receive a message?
 			if (data?.message?.length) {
-				csk.ui.alert(data.message, "success");
+				csk.ui.alert(data.message, data.status || "info");
 			}
 
 			// No scripts passed? Nothing to do.
@@ -1466,48 +1468,45 @@
 		 */
 		$(document).on("click", ".bulk-action", function(e) {
 			e.preventDefault();
+
 			var $that = $(this),
 				href = $that.attr("ajaxify") || $that.attr("href"),
-				message = $that.data("message");
+				message = $that.data("confirm");
+
 			if ($that.data("form")) {
 				return false;
 			}
+
 			if (!href?.length) {
 				return false;
 			}
+
 			if (!multiSelect.size) {
 				csk.ui.alert(csk.i18n.default.make_selection, "info");
 				return false;
 			}
-			if (typeof message !== "undefined") {
-				return csk.ui.confirm(message, function() {
-					csk.ajax.request(href, {
-						el: $that,
-						type: $that.data("request") || "POST",
-						data: {
-							"id": Array.from(multiSelect).join(","),
-							"url": href
-						},
-						onSuccess: function(data, textStatus, jqXHR) {
-							if (!data.scripts?.length) {
-								setTimeout(location.reload.bind(location), 2500);
-							}
+
+			var request = function() {
+				csk.ajax.request(href, {
+					el: $that,
+					type: $that.data("method") || "POST",
+					data: {
+						"id": Array.from(multiSelect).join(","),
+						"url": href
+					},
+					onSuccess: function(data) {
+						if (!data.scripts?.length && data?.status === "success") {
+							setTimeout(location.reload.bind(location), 2500);
 						}
-					});
-				}, null, $that);
+					}
+				});
+			};
+
+			if (message?.length) {
+				return csk.ui.confirm(message, request, null, $that);
 			}
-			csk.ajax.request(href, {
-				el: $that,
-				type: "POST",
-				data: {
-					"id": multiSelect,
-					"url": href
-				},
-				complete: function() {
-					csk.ui.toggleDisabled($that[0], false);
-					window.location.href = location.href;
-				}
-			});
+
+			request();
 		});
 
 		// Bootstrap tooltip and popover.
@@ -1566,7 +1565,7 @@
 				html: html,
 				onSuccess: function(data, textStatus, jqXHR) {
 					// remove disabled property and reload page.
-					if (!html && !data.scripts?.length) {
+					if (!html && (!data.scripts?.length && data?.status === "success")) {
 						setTimeout(location.reload.bind(location), 2500);
 					}
 				}
@@ -1632,7 +1631,7 @@
 		 * @example:
 		 * <a href="..." data-confirm="Are you sure?">...</a>
 		 */
-		$(document).on("click", "[data-confirm]:not([data-form])", function(e) {
+		$(document).on("click", "[data-confirm]:not([data-form]):not(.bulk-action)", function(e) {
 			e.preventDefault();
 			var $that = $(this),
 				method = $that.data("method")?.toUpperCase(),
@@ -1665,7 +1664,7 @@
 						data: data,
 						onSuccess: function(data, textStatus, jqXHR) {
 							// reload page only if it has no script
-							if (!data.scripts?.length) {
+							if (!data.scripts?.length && data?.status === "success") {
 								setTimeout(location.reload.bind(location), 2500);
 							}
 						}
