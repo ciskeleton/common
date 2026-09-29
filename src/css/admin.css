@@ -1414,6 +1414,10 @@ body.ajax-loading::before {
 	padding: .0625rem .312rem;
 }
 
+.dropdown:has(.btn-xs) {
+	line-height: 1 !important;
+}
+
 .btn-group-vertical > .btn {
 	border-radius: 0 !important;
 	margin-inline-start: 0 !important;
@@ -3047,6 +3051,7 @@ table td > input[type="checkbox"] {
 
 .submenu-start,
 .submenu-end {
+	flex: 1;
 	z-index: 2;
 }
 
