@@ -1064,6 +1064,26 @@ body.ajax-loading::before {
    Bootstrap component overrides
    ========================================================================== */
 
+.list-group.list-group-sm > .list-group-item {
+	padding: .25rem .5rem;
+}
+
+.list-group.list-group-lg > .list-group-item {
+	padding: .825rem 1.325rem;
+}
+
+.list-group.list-group-xl > .list-group-item {
+	padding: 1rem 2rem;
+}
+
+.list-group.list-group-lg > .list-group-item + .list-group-item {
+	border-top-width: .25rem;
+}
+
+.list-group.list-group-xl > .list-group-item + .list-group-item {
+	border-top-width: .5rem;
+}
+
 #toast-container {
 	margin-block-start: 2.85rem;
 	z-index: 9990;
@@ -2659,7 +2679,7 @@ textarea {
 
 .dropdown-menu-scroll {
 	min-block-size: 2.5rem;
-	max-block-size: calc(100vh - 5.25rem);
+	max-block-size: min(31.625rem, calc(100vh - 5.25rem));
 	overflow-y: auto;
 	overscroll-behavior: contain;
 }
@@ -3785,10 +3805,6 @@ select.is-valid ~ .select2-container.select2-container--focus .select2-selection
    ========================================================================== */
 
 @media (max-width: 36rem) {
-	.dropdown-menu-scroll {
-		max-block-size: calc(100vh - 8rem);
-	}
-
 	.modal {
 		position: fixed;
 	}
