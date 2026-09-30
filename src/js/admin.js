@@ -10,20 +10,6 @@
 	csk.i18n = csk.i18n || {};
 
 	/**
-	 * BootBox default configuration.
-	 * @since 1.0.0
-	 */
-	if (typeof bootbox !== "undefined") {
-		bootbox.setDefaults({
-			backdrop: true,
-			closeButton: false,
-			locale: csk.config.lang.code,
-			size: "small"
-		});
-		bootbox.setLocale(csk.config.lang.code || "en");
-	}
-
-	/**
 	 * Skeleton UI module.
 	 * @since 1.0.0
 	 */
@@ -32,7 +18,7 @@
 		alertClasses: ["info", "success", "warning", "danger"],
 
 		/**
-		 * Confirmation alert using either bootbox or default alert.
+		 * Confirmation alert using confirmation message template.
 		 * @since 1.0.0
 		 * @param  string   message          Message to display.
 		 * @param  callable confirmCallback  Callback to use once confirmed.
@@ -50,29 +36,6 @@
 				if (name?.length) {
 					message = sprintf(message, name);
 				}
-			}
-
-			// Bootbox if available.
-			if (typeof bootbox !== "undefined") {
-				return bootbox.confirm({
-					message: message,
-					buttons: {
-						confirm: {
-							className: "btn btn-primary btn-sm"
-						},
-						cancel: {
-							className: "btn btn-default btn-sm"
-						}
-					},
-					callback: function(result) {
-						bootbox.hideAll();
-						if (result && typeof confirmCallback === "function") {
-							confirmCallback(true);
-						} else if (!result && typeof cancelCallback === "function") {
-							cancelCallback(true);
-						}
-					}
-				});
 			}
 
 			// Bootstrap modal path
