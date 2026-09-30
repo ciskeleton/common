@@ -1452,7 +1452,7 @@
 			var request = function() {
 				csk.ajax.request(href, {
 					el: $that,
-					type: $that.data("method") || "POST",
+					type: $that.data("method")?.toUpperCase() || "POST",
 					data: {
 						"id": Array.from(multiSelect).join(","),
 						"url": href
