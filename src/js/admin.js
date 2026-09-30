@@ -609,7 +609,7 @@
 						onError.apply(this, arguments);
 					}
 					if (response?.message?.length) {
-						csk.ui.alert(response.message, response.status || "error");
+						csk.ui.alert(response.message, response.type || response.status || "error");
 					}
 				}
 			});
@@ -673,7 +673,7 @@
 
 			// Did we receive a message?
 			if (data?.message?.length) {
-				csk.ui.alert(data.message, data.status || "info");
+				csk.ui.alert(data.message, data.type || data.status || "info");
 			}
 
 			// No scripts passed? Nothing to do.
@@ -1551,7 +1551,7 @@
 			e.preventDefault();
 
 			csk.ajax.request(href, {
-				el: form,
+				el: $form,
 				type: method,
 				data: $form.serializeArray(),
 				beforeSend: function() {
