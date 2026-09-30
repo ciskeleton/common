@@ -3815,6 +3815,18 @@ select.is-valid ~ .select2-container.select2-container--focus .select2-selection
 }
 
 @media (min-width: 62rem) {
+	.col-sticky-top {
+		align-self: flex-start;
+		position: sticky;
+		top: 3.562rem;
+	}
+
+	.col-sticky-bottom {
+		align-self: flex-end;
+		position: sticky;
+		bottom: 3rem;
+	}
+
 	.dropdown-menu-wide {
 		inline-size: -webkit-max-content;
 		inline-size: -moz-max-content;
