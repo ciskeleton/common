@@ -2659,7 +2659,7 @@ textarea {
 
 .dropdown-menu-scroll {
 	min-block-size: 2.5rem;
-	max-block-size: calc(100vh - 32.5rem);
+	max-block-size: calc(100vh - 5.25rem);
 	overflow-y: auto;
 	overscroll-behavior: contain;
 }
