@@ -1549,7 +1549,7 @@
 		 */
 		$(document).on("click", "a:not([data-confirm])[data-method], button:not([data-confirm])[data-method]", function(e) {
 			var $that = $(this),
-				method = $that.data("method")?.toUpperCase() || "GET",
+				method = $that.data("method")?.toUpperCase() || "POST",
 				href = $that.attr("ajaxify") || $that.attr("href"),
 				html = $that.data("type")?.toLowerCase() === "html";
 
@@ -1634,7 +1634,7 @@
 		$(document).on("click", "[data-confirm]:not([data-form]):not(.bulk-action)", function(e) {
 			e.preventDefault();
 			var $that = $(this),
-				method = $that.data("method")?.toUpperCase(),
+				method = $that.data("method")?.toUpperCase() || "POST",
 				href = $that.attr("ajaxify") || $that.attr("href"),
 				data = $that.data("fields"),
 				message = $that.data("confirm");
