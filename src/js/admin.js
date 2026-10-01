@@ -92,11 +92,16 @@
 		 * @since  1.0.0
 		 * @param  {string} message  Message to display.
 		 * @param  {string} type     Alert type("danger", "warning", "info", or "success")
+		 * @param  {mixed}  param    Optional parameter to use with sprintf.
 		 * @return {void}
 		 */
-		alert: function(message, type = "info") {
+		alert: function(message, type = "info", param = undefined) {
 			// Make sure a valid string message is passed.
-			if (typeof message !== "string" || !message.length) return;
+			if (typeof message !== "string" || !message.length) {
+				return;
+			} else if (typeof param !== "undefined") {
+				message = sprintf(message, param);
+			}
 
 			// Normalize and validate alert type
 			type = type?.toLowerCase() || "info";
@@ -609,7 +614,11 @@
 						onError.apply(this, arguments);
 					}
 					if (response?.message?.length) {
-						csk.ui.alert(response.message, response.type || response.status || "error");
+						csk.ui.alert(
+							response.message,
+							response.type || response.status || "error",
+							response.param || undefined
+						);
 					}
 				}
 			});
@@ -673,7 +682,11 @@
 
 			// Did we receive a message?
 			if (data?.message?.length) {
-				csk.ui.alert(data.message, data.type || data.status || "info");
+				csk.ui.alert(
+					data.message,
+					data.type || data.status || "info",
+					data.param || undefined
+				);
 			}
 
 			// No scripts passed? Nothing to do.
