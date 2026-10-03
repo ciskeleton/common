@@ -3398,16 +3398,17 @@ table td > input[type="checkbox"] {
 	background: rgba(var(--bs-dark-rgb), .25);
 	block-size: 2.5rem;
 	border-radius: .125rem;
+	border: none;
 	color: var(--bs-white);
 	display: none;
 	inline-size: 2.5rem;
 	inset-block-end: 3rem;
 	inset-inline-end: 1rem;
-	line-height: 2.5rem;
+	line-height: 1rem;
 	position: fixed;
 	text-align: center;
-	-webkit-transition: background-color 50ms ease-in;
-	transition: background-color 50ms ease-in;
+	transition: background-color 150ms ease-in;
+	-webkit-transition: background-color 150ms ease-in;
 	z-index: 1035;
 }
 
