@@ -32,9 +32,9 @@
 
 			// Attempt to use sprintf
 			if (typeof elem === "object") {
-				var name = elem.data("name") || elem.attr("aria-label");
-				if (name?.length) {
-					message = sprintf(message, name);
+				var item = elem.data("item");
+				if (item?.length) {
+					message = sprintf(message, item);
 				}
 			}
 
@@ -1659,7 +1659,7 @@
 		 * are correctly set:
 		 * 1. [data-action] 	Defines the action to perform.
 		 * 2. [data-target] 	Determines targeted element (csk.element).
-		 * 3. [data-name] 		The name of the element.
+		 * 3. [data-item] 		The name of the element.
 		 * 4. [ajaxify] or [href]
 		 */
 		$(document).on("click", "[data-action]", function(e) {
@@ -1669,7 +1669,7 @@
 			var $that = $(this),
 				action = $that.data("action") || -1,
 				target = $that.data("target") || undefined,
-				name = $that.data("name") || $that.attr("aria-label") || "this",
+				item = $that.data("item") || "this",
 				href = $that.attr("ajaxify") || $that.attr("href") || undefined;
 
 			// No action? Nothing to do...
@@ -1709,7 +1709,7 @@
 
 			// We display a confirmation message if defined.
 			if (message?.length) {
-				csk.ui.confirm(sprintf(message, name), function() {
+				csk.ui.confirm(sprintf(message, item), function() {
 					window.location.href = href;
 				}, function() {
 					// We put back siblings opacity to initial state.
