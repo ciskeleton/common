@@ -12,31 +12,25 @@ CITATION.cff export-ignore
 * text=auto
 *.* text eol=lf
 
-# GitHub
-.github text
-.gitattributes text
-*.md text
-*.xml text
-
-# Treat these as binary to prevent diff noise
-*.png binary
-*.jpg binary
-*.jpeg binary
-*.gif binary
-*.webp binary
-*.woff binary
-*.woff2 binary
-*.ttf binary
-*.eot binary
-*.mp4 binary
-*.ico binary
-*.svg binary
+# Binary files
+*.png  -text
+*.jpg  -text
+*.jpeg -text
+*.gif  -text
+*.webp -text
+*.woff  -text
+*.woff2 -text
+*.ttf  -text
+*.eot  -text
+*.mp4  -text
+*.ico  -text
+*.svg  -text
 
 # Ignore OS / IDE files from export
 .DS_Store export-ignore
 Thumbs.db export-ignore
 *.log export-ignore
 
-# Zip release structure help (optional, but useful)
+# Release files
 zip.sh export-ignore
 release.yml export-ignore
