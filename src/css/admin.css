@@ -2898,7 +2898,6 @@ table td > input[type="checkbox"] {
 	inset-block-end: .5rem;
 	inset-inline-start: 50%;
 	position: absolute;
-	transform: translateX(calc(.75rem + 50%));
 }
 
 .context-admin.controller-login .footer a {
