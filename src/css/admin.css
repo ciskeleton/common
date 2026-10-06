@@ -240,7 +240,8 @@
 	--cs-font-family-default: "PT Sans", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-:root[lang="hi-IN"] {
+:root[lang="hi-IN"],
+:root[lang="mr-IN"] {
 	--cs-font-family-default: "Noto Sans Devanagari", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
