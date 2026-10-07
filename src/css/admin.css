@@ -1096,7 +1096,7 @@ body.ajax-loading::before {
 }
 
 #toast-container {
-	margin-block-start: 2.665rem;
+	margin-block-start: 2.6rem;
 	z-index: 9990;
 }
 
