@@ -125,14 +125,14 @@
 	--cs-color-pink-rgb: 224, 57, 151;
 	--cs-color-pink-subtle: #f1a3c0;
 	--cs-color-pink-subtler: #fdd6eb;
-	--cs-color-primary: #134d78;
-	--cs-color-primary-border: #114465;
-	--cs-color-primary-border-focus: #124a6e;
-	--cs-color-primary-border-hover: #0e3c56;
-	--cs-color-primary-hover: #0f4261;
-	--cs-color-primary-rgb: 19, 77, 120;
-	--cs-color-primary-subtle: #85a5bd;
-	--cs-color-primary-subtler: #d5e3ec;
+	--cs-color-primary: #185b8c;
+	--cs-color-primary-border: #144e79;
+	--cs-color-primary-border-focus: #144e79;
+	--cs-color-primary-border-hover: #103c5d;
+	--cs-color-primary-hover: #13476e;
+	--cs-color-primary-rgb: 24, 91, 140;
+	--cs-color-primary-subtle: #8bb0cb;
+	--cs-color-primary-subtler: #d8e5ee;
 	--cs-color-purple: #a333c8;
 	--cs-color-purple-border: #922eb4;
 	--cs-color-purple-border-focus: #a447ca;
@@ -3002,7 +3002,6 @@ table td > input[type="checkbox"] {
 	background-color: var(--cs-color-blue-navbar);
 	border-block-end: .0625rem solid var(--cs-color-primary-border);
 	color: inherit;
-	min-block-size: 2.562rem;
 	padding-block: 0;
 	z-index: 1033;
 }
@@ -3018,7 +3017,7 @@ table td > input[type="checkbox"] {
 	color: var(--bs-gray-300);
 	font-size: var(--cs-font-size-default);
 	inline-size: 100%;
-	line-height: 2.562rem;
+	line-height: 2rem;
 	padding: 0 .5rem;
 }
 
@@ -3861,7 +3860,7 @@ select.is-valid ~ .select2-container.select2-container--focus .select2-selection
 	.col-sticky-top {
 		align-self: flex-start;
 		position: sticky;
-		inset-block-start: 3.562rem;
+		inset-block-start: 3.525rem;
 	}
 
 	.col-sticky-bottom {
@@ -3886,15 +3885,15 @@ select.is-valid ~ .select2-container.select2-container--focus .select2-selection
 		inline-size: 20%;
 	}
 
-	.navbar-admin {
-		block-size: 2.562rem;
-	}
-
 	.navbar-admin .nav-item.border-start,
 	.navbar-admin .nav-item.border-end,
 	.navbar-admin .nav-item.border-top,
 	.navbar-admin .nav-item.border-bottom {
 		border-color: var(--cs-color-primary) !important;
+	}
+
+	.navbar-admin .dropdown-menu[data-bs-popper] {
+		margin-top: 0;
 	}
 }
 
