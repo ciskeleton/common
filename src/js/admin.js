@@ -225,8 +225,8 @@
 			var lazyImages = $("[data-src]");
 			for (var i = 0; i < lazyImages.length; i++) {
 				var img = lazyImages[i];
-				if (!csk.ui.inViewport(img) || typeof img !== "object") {
-					return;
+				if (typeof img !== "object" || !csk.ui.inViewport(img)) {
+					continue;
 				} else if ($(img).is("img")) {
 					img.src = img.getAttribute("data-src") || img.src;
 					img.onload = function() {
@@ -579,7 +579,15 @@
 				onSuccess = params.onSuccess || null,
 				onError = params.onError || null,
 				html = params.html || false,
-				dataType = html ? "html" : (params.dataType || "json");
+				dataType = params.dataType || undefined;
+
+			// Prevent duplicate requests from the same element.
+			if ($el && $el.length) {
+				if ($el.data("ajax-processing")) {
+					return;
+				}
+				$el.data("ajax-processing", true);
+			}
 
 			// Merge parameters with default ones.
 			params = $.extend(true, {}, params, {
@@ -649,6 +657,7 @@
 				document.body.classList.remove('ajax-loading');
 				var $el = request.el ? $(request.el) : null;
 				if ($el && $el.length) {
+					$el.data("ajax-processing", false);
 					setTimeout(() => csk.ui.toggleDisabled($el[0], false), 100);
 				}
 				if (typeof onComplete === "function") {
@@ -674,7 +683,7 @@
 				context = context || window;
 
 			// Append HTML responses to the document body.
-			if (html === true) {
+			if (html === true && typeof data === "string") {
 				$("body").append(data);
 				csk.ui.autoplayOverlays(document);
 				return;
@@ -1471,8 +1480,9 @@
 						"url": href
 					},
 					onSuccess: function(data) {
-						if (!data.scripts?.length && data?.status === "success") {
-							setTimeout(location.reload.bind(location), 2500);
+						// reload page only if it has no script
+						if (!data?.scripts?.length && data?.status === "success") {
+							setTimeout(() => location.reload(), 2500);
 						}
 					}
 				});
@@ -1520,65 +1530,75 @@
 		}
 
 		/**
-		 * AJAXify anchors with attribute [data-method].
+		 * AJAXify elements with the [ajaxify] attribute.
 		 * @since 1.0.0
 		 */
-		$(document).on("click", "a:not([data-confirm])[data-method], button:not([data-confirm])[data-method]", function(e) {
+		$(document).on("click", "a:not([data-confirm])[ajaxify], button:not([data-confirm])[ajaxify]", function(e) {
+			e.preventDefault();
+
 			var $that = $(this),
 				method = $that.data("method")?.toUpperCase() || "POST",
-				href = $that.attr("ajaxify") || $that.attr("href"),
+				href = $that.attr("ajaxify"),
 				html = $that.data("type")?.toLowerCase() === "html";
 
 			if (!href?.length) {
 				return;
 			}
 
-			e.preventDefault();
-
 			csk.ajax.request(href, {
 				el: $that,
 				type: method,
 				html: html,
 				onSuccess: function(data, textStatus, jqXHR) {
-					// remove disabled property and reload page.
-					if (!html && (!data.scripts?.length && data?.status === "success")) {
-						setTimeout(location.reload.bind(location), 2500);
+					// reload page only if it has no script
+					if (!html && (!data?.scripts?.length && data?.status === "success")) {
+						setTimeout(() => location.reload(), 2500);
 					}
 				}
 			});
 		});
 
 		/**
-		 * We ajaxify forms with attribute [data-method].
+		 * AJAX form submission.
+		 *
+		 * Forms are submitted asynchronously when they have either:
+		 * - [rel="async"] / [rel~="async"]
+		 * - [data-method]
+		 *
+		 * The request uses FormData so regular fields, CSRF tokens, and file
+		 * uploads are submitted exactly as they are in a normal form.
+		 *
 		 * @since 1.0.0
 		 */
-		$(document).on("submit", "form[data-method]", function(e) {
+		$(document).on("submit", "form[rel~='async'], form[data-method]", function(e) {
+			e.preventDefault();
+
 			var $form = $(this),
-				method = $form.data("method")?.toUpperCase() || "POST",
-				href = $form.attr("ajaxify") || $form.attr("action");
+				href = $form.attr("ajaxify") || $form.attr("action"),
+				method = ($form.data("method") || $form.attr("method") || "POST").toUpperCase();
 
 			if (!href?.length) {
-				return;
+				return false;
 			}
 
-			e.preventDefault();
+			// FormData preserves all form controls, including file inputs.
+			var data = new FormData(this);
 
 			csk.ajax.request(href, {
 				el: $form,
 				type: method,
-				data: $form.serializeArray(),
-				beforeSend: function() {
-					if ($form.prop("disabled")) {
-						return;
+				data: data,
+				processData: false,
+				contentType: false,
+				onSuccess: function(data) {
+					// Reload page only if it has no script.
+					if (!data?.scripts?.length && data?.status === "success") {
+						setTimeout(() => location.reload(), 2500);
 					}
-					csk.ui.toggleDisabled($form.find("[type=submit]"), true);
-				},
-				onComplete: function() {
-					$form.trigger("reset");
-					csk.ui.toggleDisabled($form.find("[type=submit]"), false);
-					setTimeout(location.reload.bind(location), 2500);
 				}
 			});
+
+			return false;
 		});
 
 		/**
@@ -1609,6 +1629,7 @@
 		 */
 		$(document).on("click", "[data-confirm]:not([data-form]):not(.bulk-action)", function(e) {
 			e.preventDefault();
+
 			var $that = $(this),
 				method = $that.data("method")?.toUpperCase() || "POST",
 				href = $that.attr("ajaxify") || $that.attr("href"),
@@ -1640,8 +1661,8 @@
 						data: data,
 						onSuccess: function(data, textStatus, jqXHR) {
 							// reload page only if it has no script
-							if (!data.scripts?.length && data?.status === "success") {
-								setTimeout(location.reload.bind(location), 2500);
+							if (!data?.scripts?.length && data?.status === "success") {
+								setTimeout(() => location.reload(), 2500);
 							}
 						}
 					});
@@ -1731,16 +1752,20 @@
 		 */
 		$(document).on("click", "[data-submit]", function(e) {
 			e.preventDefault();
+
 			var $that = $(this),
 				target = $($that.data("submit")),
 				message = $that.data("confirm");
+
 			if (typeof target === "undefined") {
 				return false;
 			}
+
 			if (!message?.length) {
 				target.submit();
 				return;
 			}
+
 			return csk.ui.confirm(message, function() {
 				target.submit();
 			}, null, $that);
@@ -1752,6 +1777,7 @@
 		 */
 		$(document).on("click", "[data-form]", function(e) {
 			e.preventDefault();
+
 			var $that = $(this),
 				href = $that.data("form"),
 				data = $that.data("fields"),
