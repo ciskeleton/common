@@ -202,6 +202,7 @@
 	--cs-color-yellow-subtle: #fee08a;
 	--cs-color-yellow-subtler: #fff6c2;
 	--cs-font-family-default: "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	--cs-line-height-default: 1.5;
 	--cs-font-size-default: .8125rem;
 	--cs-font-size-h1: 1.438rem;
 	--cs-font-size-h2: 1.25rem;
@@ -245,6 +246,11 @@
 	--cs-font-family-default: "Noto Sans Devanagari", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
+:root[lang^="km"] {
+	--cs-font-family-default: "Noto Sans Khmer", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	--cs-line-height-default: 1.7;
+}
+
 :root[lang="ja-JP"] {
 	--cs-font-family-default: "Noto Sans JP", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
@@ -270,6 +276,7 @@ body {
 	color: var(--cs-color-default);
 	font-family: var(--cs-font-family-default);
 	font-size: var(--cs-font-size-default);
+	line-height: var(--cs-line-height-default:);
 	position: relative;
 }
 
