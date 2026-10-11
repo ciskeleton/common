@@ -603,7 +603,13 @@
 				beforeSend: function(jqXHR, settings) {
 					document.body.classList.add('ajax-loading');
 					if ($el && $el.length) {
-						csk.ui.toggleDisabled($el[0], true);
+						if ($el.is("form")) {
+							$el.find(":submit").each(function() {
+								csk.ui.toggleDisabled(this, true);
+							});
+						} else {
+							csk.ui.toggleDisabled($el[0], true);
+						}
 					}
 					if (typeof beforeSend === "function") {
 						return beforeSend.apply(this, arguments);
@@ -658,7 +664,15 @@
 				var $el = request.el ? $(request.el) : null;
 				if ($el && $el.length) {
 					$el.data("ajax-processing", false);
-					setTimeout(() => csk.ui.toggleDisabled($el[0], false), 100);
+					setTimeout(function() {
+						if ($el.is("form")) {
+							$el.find(":submit").each(function() {
+								csk.ui.toggleDisabled(this, false);
+							});
+						} else {
+							csk.ui.toggleDisabled($el[0], false);
+						}
+					}, 100);
 				}
 				if (typeof onComplete === "function") {
 					onComplete.apply(this, arguments);
