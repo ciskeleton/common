@@ -1108,7 +1108,7 @@ body.ajax-loading::before {
 }
 
 #toast-container > div {
-	padding-block: .625rem;
+	padding-block: .625rem !important;
 	padding-inline: 3.125rem 1rem;
 }
 
