@@ -20,10 +20,10 @@
 		/**
 		 * Confirmation alert using confirmation message template.
 		 * @since 1.0.0
-		 * @param  string   message          Message to display.
-		 * @param  callable confirmCallback  Callback to use once confirmed.
-		 * @param  callable cancelCallback   Callback to use once canceled.
-		 * @return void
+		 * @param  {string}   message          Message to display.
+		 * @param  {callable} confirmCallback  Callback to use once confirmed.
+		 * @param  {callable} cancelCallback   Callback to use once canceled.
+		 * @return {void}
 		 */
 		confirm: function(message, confirmCallback, cancelCallback, elem) {
 			if ((message.startsWith("lang:") || message.startsWith("i18n:")) && typeof csk.i18n !== "undefined") {
@@ -203,9 +203,9 @@
 		 *
 		 * @function delegate
 		 * @memberof csk.ui
-		 * @param {string} event - The name of the event to listen for.
-		 * @param {string} selector - A CSS selector to match the event target or its ancestors.
-		 * @param {Function} handler - The callback function to execute when a match is found.
+		 * @param  {string} event - The name of the event to listen for.
+		 * @param  {string} selector - A CSS selector to match the event target or its ancestors.
+		 * @param  {Function} handler - The callback function to execute when a match is found.
 		 * @return {void}
 		 */
 		delegate: function(event, selector, handler) {
@@ -432,8 +432,8 @@
 		 * Enables or disable one or more elements.
 		 * @since 1.0.0
 		 *
-		 * @param {HTMLElement|NodeList|Array} els - Element(s) to toggle.
-		 * @param {boolean} disabled - Whether to disable (true) or enable (false).
+		 * @param  {HTMLElement|NodeList|Array} els - Element(s) to toggle.
+		 * @param  {boolean} disabled - Whether to disable (true) or enable (false).
 		 */
 		toggleDisabled: function(els, disabled) {
 			if (!els) return;
@@ -559,16 +559,22 @@
 		 * Array of queued AJAX requests.
 		 * @type {Array}
 		 */
-		requests: [],
+		_requests: [],
 		/**
 		 * Flag to check whether a request is being processed.
 		 * @type {Boolean}
 		 */
-		requesting: false,
+		_requesting: false,
+		/**
+		 * Timer ID for a scheduled AJAX request.
+		 * @type {number|null}
+		 */
+		_requestTimer: null,
 		/**
 		 * Queues an AJAX request and fires if needed.
-		 * @param  string url     URL to send AJAX to.
-		 * @param  array  params  Object of AJAX settings.
+		 * @param  {string} url     URL to send AJAX to.
+		 * @param  {array}  params  Object of AJAX settings.
+		 * @return {void}
 		 */
 		request: function(url, params) {
 			params = params || {};
@@ -636,23 +642,34 @@
 					}
 				}
 			});
-			this.requests.push(params);
+			this._requests.push(params);
 			this._execute();
 		},
-		/** Stops AJAX requests and dequeue them all. */
+		/**
+		 * Stops the AJAX queue and cancels any pending request.
+		 * @return void
+		 */
 		stop: function() {
-			this.requests = [];
+			this._requests = [];
+			if (this._requestTimer !== null) {
+				clearTimeout(this._requestTimer);
+				this._requestTimer = null;
+				this._requesting = false;
+			}
 		},
-		/** Handles the queue an run AJAX requests. */
+		/**
+		 * Handles the queue and runs AJAX requests.
+		 * @return void
+		 */
 		_execute: function() {
-			if (this.requests.length == 0) {
+			if (this._requests.length == 0) {
 				return;
 			}
-			if (this.requesting == true) {
+			if (this._requesting == true) {
 				return;
 			}
 			var self = this,
-				request = this.requests.splice(0, 1)[0],
+				request = this._requests.splice(0, 1)[0],
 				onComplete = request.onComplete;
 
 			if (request._execute) {
@@ -677,20 +694,19 @@
 				if (typeof onComplete === "function") {
 					onComplete.apply(this, arguments);
 				}
-				self.requesting = false;
+				self._requesting = false;
 				self._execute();
 			};
-			this.requesting = true;
+			this._requesting = true;
 
-			const delay = request._delay ?? 0;
-			setTimeout(() => $.ajax(request), delay);
+			this._sendRequest(request, request._delay ?? 0);
 		},
 		/**
 		 * Handle JSON data response sent by csk.ajax.request
-		 * @param  string  data     Normally, it should be a JSON encoded response.
-		 * @param  object  context  Execution context
-		 * @param  boolean html     Whether the response is HTML.
-		 * @return void
+		 * @param  {string}  data     Normally, it should be a JSON encoded response.
+		 * @param  {object}  context  Execution context
+		 * @param  {boolean} html     Whether the response is HTML.
+		 * @return {void}
 		 */
 		_response: function(data, context, html) {
 			var data = data || {},
@@ -726,6 +742,18 @@
 					console.error(e);
 				}
 			}
+		},
+		/**
+		 * Schedules an AJAX request for execution.
+		 * @param  {object} request  AJAX settings.
+		 * @param  {number} delay    Delay in milliseconds.
+		 * @return {void}
+		 */
+		_sendRequest: function(request, delay) {
+			this._requestTimer = setTimeout(() => {
+				this._requestTimer = null;
+				$.ajax(request);
+			}, delay);
 		}
 	};
 
@@ -895,7 +923,7 @@
 
 		/**
 		 * Opens the media browser for a given target.
-		 * @param {HTMLElement|Object} target Summernote editor element or field config object.
+		 * @param  {HTMLElement|Object} target Summernote editor element or field config object.
 		 * @return {void}
 		 */
 		browse: function(target) {
@@ -920,7 +948,7 @@
 
 		/**
 		 * Loads media items from the server via AJAX.
-		 * @param {string} url Endpoint URL to fetch media items.
+		 * @param  {string} url Endpoint URL to fetch media items.
 		 * @return {void}
 		 */
 		load: function(url) {
@@ -973,8 +1001,8 @@
 		/**
 		 * Resolves a media item's URL for a given size.
 		 * Falls back to original URL if size is missing or not found.
-		 * @param {HTMLElement} item Media item element.
-		 * @param {string|null} size Requested size (e.g., 'thumb', 'large').
+		 * @param  {HTMLElement} item Media item element.
+		 * @param  {string|null} size Requested size (e.g., 'thumb', 'large').
 		 * @return {string} Resolved media URL.
 		 */
 		resolveUrl: function(item, size) {
@@ -991,7 +1019,7 @@
 
 		/**
 		 * Marks a media item as selected.
-		 * @param {HTMLElement} el Media item element to select.
+		 * @param  {HTMLElement} el Media item element to select.
 		 * @return {void}
 		 */
 		select: function(el) {
