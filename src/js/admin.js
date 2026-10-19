@@ -1663,6 +1663,15 @@
 			}
 		);
 
+		// Reset scroll position of dropdowns when they close.
+		$(document).on(
+			"hide.bs.dropdown",
+			".dropdown:has(.dropdown-menu.dropdown-menu-scroll)",
+			function() {
+				$(this).find(".dropdown-menu-scroll").scrollTop(0);
+			}
+		);
+
 		/**
 		 * Another way to add a confirmation message before proceeding is
 		 * to add the "data-confirm" tag with a required message.
