@@ -1216,7 +1216,19 @@ body.ajax-loading::before {
 }
 
 .btn > .fa,
-.btn > .fas {
+.btn > .fab,
+.btn > .fa-brands,
+.btn > .far,
+.btn > .fa-regular,
+.btn > .fas,
+.btn > .fa-solid,
+.dropdown-item > .fa,
+.dropdown-item > .fab,
+.dropdown-item > .fa-brands,
+.dropdown-item > .far,
+.dropdown-item > .fa-regular,
+.dropdown-item > .fas,
+.dropdown-item > .fa-solid {
 	line-height: inherit !important;
 }
 
@@ -2828,8 +2840,12 @@ caption,
 }
 
 .page-link > .fa,
+.page-link > .fab,
+.page-link > .fa-brands,
+.page-link > .far,
+.page-link > .fa-regular,
 .page-link > .fas,
-.page-link > .fab {
+.page-link > .fa-solid {
 	font-size: var(--cs-font-size-smaller);
 }
 
@@ -3163,7 +3179,12 @@ table td > input[type="checkbox"] {
 }
 
 .card.card-file .file-inner > .fa,
-.card.card-file .file-inner > .fas {
+.card.card-file .file-inner > .fab,
+.card.card-file .file-inner > .fa-brands,
+.card.card-file .file-inner > .far,
+.card.card-file .file-inner > .fa-regular,
+.card.card-file .file-inner > .fas,
+.card.card-file .file-inner > .fa-solid {
 	font-size: 5rem;
 	inset-block-start: 50%;
 	inset-inline-start: 50%;
@@ -3815,8 +3836,8 @@ select.is-valid ~ .select2-container.select2-container--focus .select2-selection
    RTL adjustments
    ========================================================================== */
 
-.fa.fa-dir-flip,
-.fas.fa-dir-flip {
+.dir-flip,
+.fa-dir-flip {
 	-webkit-transform: scaleX(var(--transform-direction));
 	transform: scaleX(var(--transform-direction));
 }
