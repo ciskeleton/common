@@ -3361,7 +3361,7 @@ table td > input[type="checkbox"] {
 }
 
 .info-box .icon {
-	color: rgba(var(--bs-dark-rgb), .25);
+	color: rgba(var(--bs-white-rgb), .25);
 	font-size: 3rem;
 	inset-block-start: 1rem;
 	inset-inline-end: .625rem !important;
