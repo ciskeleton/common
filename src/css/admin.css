@@ -3120,15 +3120,14 @@ table td > input[type="checkbox"] {
 .submenu .container {
 	position: relative;
 }
-
-.submenu-center {
-	z-index: 1;
-}
-
 .submenu-start,
 .submenu-end {
-	flex: 1;
 	z-index: 2;
+}
+
+.submenu-center {
+	flex: auto;
+	z-index: 1;
 }
 
 /* ==========================================================================
@@ -3894,6 +3893,11 @@ select.is-valid ~ .select2-container.select2-container--focus .select2-selection
 }
 
 @media (min-width: 62rem) {
+	.submenu-start,
+	.submenu-end {
+		flex: 1;
+	}
+
 	.col-sticky-top {
 		align-self: flex-start;
 		position: sticky;
