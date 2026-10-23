@@ -2989,6 +2989,15 @@ table td > input[type="checkbox"] {
 	margin-block-end: 0;
 }
 
+.nav {
+	--bs-nav-link-color: var(--cs-color-primary);
+	--bs-nav-link-hover-color: var(--cs-color-primary-hover);
+}
+
+.nav-pills {
+	--bs-nav-pills-link-active-bg: var(--cs-color-primary);
+}
+
 .nav-alerts .dropdown-item {
 	display: block;
 }
