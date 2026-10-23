@@ -212,7 +212,6 @@
 	--cs-font-size-h6: .715rem;
 	--cs-font-size-small: .75rem;
 	--cs-font-size-smaller: .688rem;
-	--bs-border-radius-xs: .188rem;
 	--cs-shadow-md: 0 .5rem 1.25rem rgba(15, 23, 42, .08);
 	--cs-shadow-sm: 0 .125rem .375rem rgba(15, 23, 42, .06);
 	--cs-surface-bg: #ffffff;
@@ -1477,10 +1476,9 @@ body.ajax-loading::before {
 
 .btn-group-xs > .btn,
 .btn-xs {
-	border-radius: var(--bs-border-radius-xs) !important;
-	font-size: .65rem !important;
-	line-height: 1.5 !important;
-	padding: .0625rem .312rem;
+	border-radius: var(--bs-border-radius-sm) !important;
+	font-size: var(--cs-font-size-smaller) !important;
+	padding: .125rem .3125rem;
 }
 
 .dropdown:has(.btn-xs) {
@@ -1493,13 +1491,13 @@ body.ajax-loading::before {
 }
 
 .btn-group-vertical > .btn:first-child {
-	border-start-start-radius: var(--bs-border-radius-xs) !important;
-	border-start-end-radius: var(--bs-border-radius-xs) !important;
+	border-start-start-radius: var(--bs-border-radius-sm) !important;
+	border-start-end-radius: var(--bs-border-radius-sm) !important;
 }
 
 .btn-group-vertical > .btn:last-child {
-	border-end-start-radius: var(--bs-border-radius-xs) !important;
-	border-end-end-radius: var(--bs-border-radius-xs) !important;
+	border-end-start-radius: var(--bs-border-radius-sm) !important;
+	border-end-end-radius: var(--bs-border-radius-sm) !important;
 }
 
 .btn-group-vertical > .btn {
@@ -1511,13 +1509,13 @@ body.ajax-loading::before {
 }
 
 .btn-group-xs > .btn:first-child {
-	border-start-start-radius: var(--bs-border-radius-xs) !important;
-	border-end-start-radius: var(--bs-border-radius-xs) !important;
+	border-start-start-radius: var(--bs-border-radius-sm) !important;
+	border-end-start-radius: var(--bs-border-radius-sm) !important;
 }
 
 .btn-group-xs > .btn:last-child {
-	border-start-end-radius: var(--bs-border-radius-xs) !important;
-	border-end-end-radius: var(--bs-border-radius-xs) !important;
+	border-start-end-radius: var(--bs-border-radius-sm) !important;
+	border-end-end-radius: var(--bs-border-radius-sm) !important;
 }
 
 .btn-info {
@@ -2589,11 +2587,6 @@ body.ajax-loading::before {
 	background-color: var(--cs-color-white-hover);
 	border-color: var(--cs-color-white-border-hover);
 	color: inherit;
-}
-
-.btn-xs,
-.btn-group-xs > .btn {
-	border-radius: .3125rem;
 }
 
 .btn-yellow {
