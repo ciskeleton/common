@@ -3886,11 +3886,6 @@ select.is-valid ~ .select2-container.select2-container--focus .select2-selection
 }
 
 @media (min-width: 62rem) {
-	.submenu-start,
-	.submenu-end {
-		flex: 1;
-	}
-
 	.col-sticky-top {
 		align-self: flex-start;
 		position: sticky;
@@ -3928,6 +3923,13 @@ select.is-valid ~ .select2-container.select2-container--focus .select2-selection
 
 	.navbar-admin .dropdown-menu[data-bs-popper] {
 		margin-top: 0;
+	}
+}
+
+@media (min-width: 75rem) {
+	.submenu-start,
+	.submenu-end {
+		flex: 1;
 	}
 }
 
