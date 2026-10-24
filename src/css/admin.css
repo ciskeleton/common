@@ -201,7 +201,7 @@
 	--cs-color-yellow-rgb: 251, 189, 8;
 	--cs-color-yellow-subtle: #fee08a;
 	--cs-color-yellow-subtler: #fff6c2;
-	--cs-font-family-default: "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	--cs-font-family-default: "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	--cs-line-height-default: 1.5;
 	--cs-font-size-default: .8125rem;
 	--cs-font-size-h1: 1.438rem;
@@ -230,40 +230,64 @@
 	--transform-direction: -1;
 }
 
-:root[lang^="ar"],
-:root[lang^="fa"] {
-	--cs-font-family-default: "Noto Kufi Arabic", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+:root[lang^="ar"] {
+	--cs-font-family-default: "Noto Kufi Arabic", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 :root[lang="bg-BG"],
 :root[lang="ru-RU"] {
-	--cs-font-family-default: "PT Sans", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	--cs-font-family-default: "PT Sans", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 :root[lang="hi-IN"],
 :root[lang="mr-IN"] {
-	--cs-font-family-default: "Noto Sans Devanagari", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
-
-:root[lang^="km"] {
-	--cs-font-family-default: "Noto Sans Khmer", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-	--cs-line-height-default: 1.7;
+	--cs-font-family-default: "Noto Sans Devanagari", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 :root[lang="ja-JP"] {
-	--cs-font-family-default: "Noto Sans JP", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	--cs-font-family-default: "Noto Sans JP", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 :root[lang="ko-KR"] {
-	--cs-font-family-default: "Noto Sans KR", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	--cs-font-family-default: "Noto Sans KR", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 :root[lang="zh-CN"] {
-	--cs-font-family-default: "Noto Sans SC", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	--cs-font-family-default: "Noto Sans SC", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 :root[lang="zh-TW"] {
-	--cs-font-family-default: "Noto Sans TC", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	--cs-font-family-default: "Noto Sans TC", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+:root[lang^="bn"] {
+	--cs-font-family-default: "Noto Sans Bengali", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+:root[lang^="hy"] {
+	--cs-font-family-default: "Noto Sans Armenian", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+:root[lang^="ka"] {
+	--cs-font-family-default: "Noto Sans Georgian", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+:root[lang^="km"] {
+	--cs-font-family-default: "Noto Sans Khmer", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	--cs-line-height-default: 1.7;
+}
+
+:root[lang^="ta"] {
+	--cs-font-family-default: "Noto Sans Tamil", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+:root[lang^="th"] {
+	--cs-font-family-default: "Noto Sans Thai", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+:root[lang^="fa"],
+:root[lang^="ur"] {
+	--cs-font-family-default: "Noto Sans Arabic", "Inter", Tahoma, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 /* ==========================================================================
