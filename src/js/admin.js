@@ -1223,7 +1223,7 @@
 	 * Improves scroll/touch performance automatically.
 	 * @since 1.0.0
 	 */
-	document.addEventListener("DOMContentLoaded", function() {
+	csk.ui.addListener("DOMContentLoaded", function() {
 		try {
 			let opts = Object.defineProperty({}, 'passive', {
 				get: function() {
@@ -1237,6 +1237,39 @@
 			document.addEventListener('touchstart', function(){}, { passive: true });
 			document.addEventListener('wheel', function(){}, { passive: true });
 		}
+	});
+
+	/**
+	 * Initializes dependent disabled states.
+	 *
+	 * A field is disabled when its controlling field's value does not
+	 * match the configured data-disable-value.
+	 *
+	 * @since 1.0.0
+	 */
+	csk.ui.addListener("DOMContentLoaded", () => {
+		const fields = document.querySelectorAll("[data-disable-target]");
+
+		if (!fields.length) return;
+
+		fields.forEach(field => {
+			const selector = field.dataset.disableTarget;
+			const controller = document.querySelector(selector);
+
+			if (!controller) return;
+
+			const update = () => {
+				const disabled = controller.value !== field.dataset.disableValue;
+
+				// Preserve any server-side restriction.
+				if (field.dataset.serverDisabled === "true") return;
+
+				csk.ui.toggleDisabled(field, disabled);
+			};
+
+			controller.addEventListener("change", update);
+			update();
+		});
 	});
 
 	// Things to do when the page is ready!
