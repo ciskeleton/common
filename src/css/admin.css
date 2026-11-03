@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * CiSkeleton Back-End - Admin CSS (https://www.ianhub.net/)
+ * CiSkeleton Back-End - Admin CSS (https://github.com/ciskeleton)
  * Copyright 2018-present Kader Bouyakoub (https://github.com/bkader)
  */
 
@@ -1238,6 +1238,7 @@ body.ajax-loading::before {
 	text-wrap: nowrap !important;
 }
 
+.btn > .bi,
 .btn > .fa,
 .btn > .fab,
 .btn > .fa-brands,
@@ -1245,6 +1246,7 @@ body.ajax-loading::before {
 .btn > .fa-regular,
 .btn > .fas,
 .btn > .fa-solid,
+.dropdown-item > .bi,
 .dropdown-item > .fa,
 .dropdown-item > .fab,
 .dropdown-item > .fa-brands,
@@ -2856,6 +2858,7 @@ caption,
 	color: var(--cs-color-primary);
 }
 
+.page-link > .bi,
 .page-link > .fa,
 .page-link > .fab,
 .page-link > .fa-brands,
@@ -3203,6 +3206,7 @@ table td > input[type="checkbox"] {
 	display: block;
 }
 
+.card.card-file .file-inner > .bi,
 .card.card-file .file-inner > .fa,
 .card.card-file .file-inner > .fab,
 .card.card-file .file-inner > .fa-brands,
@@ -3862,6 +3866,7 @@ select.is-valid ~ .select2-container.select2-container--focus .select2-selection
    ========================================================================== */
 
 .dir-flip,
+.bi-dir-flip,
 .fa-dir-flip {
 	-webkit-transform: scaleX(var(--transform-direction));
 	transform: scaleX(var(--transform-direction));
