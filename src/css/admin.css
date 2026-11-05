@@ -294,13 +294,19 @@
    Base elements
    ========================================================================== */
 
+html, body {
+	block-size: 100%;
+}
+
 body {
 	background-color: var(--cs-body-bg);
 	color: var(--cs-color-default);
 	font-family: var(--cs-font-family-default);
 	font-size: var(--cs-font-size-default);
-	line-height: var(--cs-line-height-default:);
+	line-height: var(--cs-line-height-default);
 	position: relative;
+	min-height: max(20rem, 100vh);
+	min-height: max(20rem, 100dvh);
 }
 
 button,
@@ -1099,6 +1105,34 @@ body.ajax-loading::before {
 
 .h-80 {
 	block-size: 80% !important;
+}
+
+.vw-25 {
+	inline-size: 25vw !important;
+}
+
+.vw-50 {
+	inline-size: 50vw !important;
+}
+
+.vw-75 {
+	inline-size: 75vw !important;
+}
+
+.vh-25 {
+	block-size: 25vh !important;
+}
+
+.vh-50 {
+	block-size: 50vh !important;
+}
+
+.vh-75 {
+	block-size: 75vh !important;
+}
+
+.vh-80 {
+	block-size: 80vh !important;
 }
 
 /* ==========================================================================
