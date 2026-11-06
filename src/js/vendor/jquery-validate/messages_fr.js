@@ -20,8 +20,9 @@
 		minWords: e.validator.format("Veuillez fournir au moins {0} mots."),
 		minlength: e.validator.format("Veuillez fournir au moins {0} caract\xe8res."),
 		notEqualTo: "Veuillez fournir une valeur diff\xe9rente, les valeurs ne doivent pas \xeatre identiques.",
-		nowhitespace: "Veuillez ne pas inscrire d'espaces blancs.",
+		nowhitespace: "Veuillez ne pas inscrire d’espaces blancs.",
 		required: "Ce champ est requis.",
+		string: "Veuillez n’utiliser que des lettres, des chiffres, des espaces et de la ponctuation.",
 		url: "Veuillez fournir une URL valide.",
 	}), e
 });

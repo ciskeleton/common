@@ -22,6 +22,7 @@
 		notEqualTo: "Palun sisestage erinev väärtus, väärtused ei tohi olla samad.",
 		nowhitespace: "Palun ilma tühikuteta",
 		required: "See väli on kohustuslik.",
+		string: "Palun kasutage ainult tähti, numbreid, tühikuid ja kirjavahemärke.",
 		url: "Palun sisestage kehtiv URL.",
 	}), e
 });

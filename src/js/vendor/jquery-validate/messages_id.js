@@ -22,6 +22,7 @@
 		notEqualTo: "Silakan masukkan nilai yang berbeda, nilai tidak boleh sama.",
 		nowhitespace: "Jangan gunakan spasi.",
 		required: "Bidang ini wajib diisi.",
+		string: "Mohon hanya gunakan huruf, angka, spasi, dan tanda baca.",
 		url: "Silakan masukkan URL yang valid.",
 	}), e
 });

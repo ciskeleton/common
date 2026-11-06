@@ -22,6 +22,7 @@
 		notEqualTo: "Prašau įvesti kitą reikšmę, reikšmės negali būti vienodos.",
 		nowhitespace: "Prašau neįvesti tarpų.",
 		required: "Šis laukas yra privalomas.",
+		string: "Prašome naudoti tik raides, skaičius, tarpus ir skyrybos ženklus.",
 		url: "Prašau įvesti teisingą URL.",
 	}), e
 });

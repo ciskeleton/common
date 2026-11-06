@@ -22,6 +22,7 @@
 		notEqualTo: "Angiv en anden værdi, værdierne må ikke være det samme.",
 		nowhitespace: "Må ikke indeholde mellemrum.",
 		required: "Dette felt er påkrævet.",
+		string: "Kun bogstaver, tal, mellemrum og tegnsætning, tak.",
 		url: "Indtast en gyldig URL.",
 	}), e
 });

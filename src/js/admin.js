@@ -1,5 +1,5 @@
 /*!
- * Skeleton Back-End - Admin JS (https://www.ianhub.net/)
+ * Skeleton Back-End - Admin JS (https://github.com/ciskeleton)
  * Copyright 2018-present Kader Bouyakoub (https://github.com/bkader)
  */
 (function($, window, document, undefined) {

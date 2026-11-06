@@ -22,6 +22,7 @@
 		notEqualTo: "Introduïu un valor diferent, els valors no poden ser iguals.",
 		nowhitespace: "Sense espais en blanc, si us plau",
 		required: "Aquest camp és obligatori.",
+		string: "Només lletres, números, espais i signes de puntuació, si us plau.",
 		url: "Introduïu una URL vàlida.",
 	}), e
 });

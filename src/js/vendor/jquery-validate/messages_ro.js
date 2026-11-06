@@ -22,6 +22,7 @@
 		notEqualTo: "Vă rugăm să introduceți o valoare diferită, valorile nu trebuie să fie identice.",
 		nowhitespace: "Vă rugăm să nu introduceți spații goale.",
 		required: "Acest câmp este obligatoriu.",
+		string: "Vă rugăm să folosiți doar litere, cifre, spații și semne de punctuație.",
 		url: "Vă rugăm să introduceți o adresă URL validă.",
 	}), e
 });

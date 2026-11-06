@@ -22,6 +22,7 @@
 		notEqualTo: "Please enter a different value, values must not be the same.",
 		nowhitespace: "No white space please",
 		required: "This field is required.",
+		string: "Letters, numbers, spaces, and punctuation only please.",
 		url: "Please enter a valid URL.",
 	}), e
 });

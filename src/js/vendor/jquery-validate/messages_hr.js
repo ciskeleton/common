@@ -22,6 +22,7 @@
 		notEqualTo: "Molimo unesite drugu vrijednost, vrijednosti ne smiju biti iste.",
 		nowhitespace: "Molimo ne unosite razmake.",
 		required: "Ovo polje je obavezno.",
+		string: "Molimo, samo slova, brojke, razmaci i interpunkcijski znakovi.",
 		url: "Unesite ispravan URL.",
 	}), e
 });

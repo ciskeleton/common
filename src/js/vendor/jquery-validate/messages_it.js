@@ -22,6 +22,7 @@
 		notEqualTo: "Si prega di inserire un valore diverso, i valori non devono essere uguali.",
 		nowhitespace: "Si prega di non inserire spazi bianchi.",
 		required: "Campo obbligatorio",
+		string: "Solo lettere, numeri, spazi e punteggiatura, per favore.",
 		url: "Inserisci un indirizzo web valido",
 	}), e
 });

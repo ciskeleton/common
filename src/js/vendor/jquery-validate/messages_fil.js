@@ -22,6 +22,7 @@
 		notEqualTo: "Pakilagay ang ibang halaga.",
 		nowhitespace: "Huwag maglagay ng spaces.",
 		required: "Kailangan itong field.",
+		string: "Mga letra, numero, espasyo, at bantas lamang po.",
 		url: "Pakilagay ang wastong URL.",
 	}), e
 });

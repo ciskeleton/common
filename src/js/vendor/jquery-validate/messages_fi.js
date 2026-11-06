@@ -22,6 +22,7 @@
 		notEqualTo: "Syötä eri arvo, arvot eivät voi olla samat.",
 		nowhitespace: "Älä käytä välilyöntejä.",
 		required: "Tämä kenttä on pakollinen.",
+		string: "Vain kirjaimet, numerot, välilyönnit ja välimerkit, kiitos.",
 		url: "Syötä oikea URL-osoite.",
 	}), e
 });

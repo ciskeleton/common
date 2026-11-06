@@ -22,6 +22,7 @@
 		notEqualTo: "Prosimo vnesite drugačno vrednost, vrednosti ne smejo biti enake.",
 		nowhitespace: "Prosimo ne vnašajte presledkov.",
 		required: "To polje je obvezno.",
+		string: "Prosimo, uporabite le črke, številke, presledke in ločila.",
 		url: "Prosimo vnesite veljaven URL naslov.",
 	}), e
 });

@@ -22,6 +22,7 @@
 		notEqualTo: "Hãy nhập giá trị khác, giá trị không được giống nhau.",
 		nowhitespace: "Không được nhập khoảng trắng.",
 		required: "Hãy nhập.",
+		string: "Vui lòng chỉ sử dụng chữ cái, chữ số, dấu cách và dấu câu.",
 		url: "Hãy nhập URL.",
 	}), e
 });

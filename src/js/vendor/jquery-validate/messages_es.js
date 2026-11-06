@@ -22,6 +22,7 @@
 		notEqualTo: "Por favor, escribe un valor diferente, los valores no deben ser iguales.",
 		nowhitespace: "Por favor, no uses espacios en blanco.",
 		required: "Este campo es obligatorio.",
+		string: "Solo letras, números, espacios y signos de puntuación, por favor.",
 		url: "Por favor, escribe una URL válida.",
 	}), e
 });

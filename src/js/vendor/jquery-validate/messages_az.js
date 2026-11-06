@@ -22,6 +22,7 @@
 		notEqualTo: "Zəhmət olmasa, fərqli məna daxil edin, mənalar eyni olmamalıdır.",
 		nowhitespace: "Zəhmət olmasa, boşluq daxil etməyin.",
 		required: "Bu xana mütləq doldurulmalıdır.",
+		string: "Zəhmət olmasa, yalnız hərflər, rəqəmlər, boşluqlar və durğu işarələri.",
 		url: "Zəhmət olmasa, düzgün URL daxil edin.",
 	}), e
 });

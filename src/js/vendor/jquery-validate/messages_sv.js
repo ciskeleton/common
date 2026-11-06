@@ -22,6 +22,7 @@
 		notEqualTo: "Vänligen ange ett annat värde, värdena får inte vara lika.",
 		nowhitespace: "Vänligen ange inga mellanslag.",
 		required: "Detta fält är obligatoriskt.",
+		string: "Endast bokstäver, siffror, mellanslag och skiljetecken, tack.",
 		url: "Ange en korrekt URL.",
 	}), e
 });

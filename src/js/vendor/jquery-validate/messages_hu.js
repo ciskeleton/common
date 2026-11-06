@@ -22,6 +22,7 @@
 		notEqualTo: "Kérjük, adjon meg másik értéket, az értékek nem lehetnek azonosak.",
 		nowhitespace: "Kérjük, ne használjon szóközöket.",
 		required: "Kötelező megadni.",
+		string: "Kérjük, csak betűket, számokat, szóközöket és írásjeleket használjon.",
 		url: "Érvényes URL-nek kell lennie.",
 	}), e
 });

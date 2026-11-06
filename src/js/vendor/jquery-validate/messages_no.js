@@ -22,6 +22,7 @@
 		notEqualTo: "Vennligst skriv en annen verdi, verdiene kan ikke være like.",
 		nowhitespace: "Vennligst ikke bruk mellomrom.",
 		required: "Angi en verdi.",
+		string: "Kun bokstaver, tall, mellomrom og tegnsetting, takk.",
 		url: "Angi en gyldig URL.",
 	}), e
 });

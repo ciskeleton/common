@@ -22,6 +22,7 @@
 		notEqualTo: "Voer een andere waarde in, waarden mogen niet hetzelfde zijn.",
 		nowhitespace: "Gebruik geen witruimte.",
 		required: "Dit is een verplicht veld.",
+		string: "Graag uitsluitend letters, cijfers, spaties en leestekens.",
 		url: "Vul hier een geldige URL in.",
 	}), e
 });

@@ -22,6 +22,7 @@
 		notEqualTo: "Lütfen farklı bir değer giriniz, değerler aynı olmamalıdır.",
 		nowhitespace: "Lütfen boşluk kullanmayınız.",
 		required: "Bu alanın doldurulması zorunludur.",
+		string: "Lütfen sadece harfler, rakamlar, boşluklar ve noktalama işaretleri kullanın.",
 		url: "Lütfen geçerli bir web adresi (URL) giriniz.",
 	}), e
 });

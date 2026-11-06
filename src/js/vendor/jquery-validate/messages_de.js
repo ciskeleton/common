@@ -22,6 +22,7 @@
 		notEqualTo: "Bitte geben Sie einen anderen Wert ein, Werte dürfen nicht gleich sein.",
 		nowhitespace: "Bitte verwenden Sie keine Leerzeichen.",
 		required: "Dieses Feld ist ein Pflichtfeld.",
+		string: "Bitte nur Buchstaben, Zahlen, Leerzeichen und Satzzeichen.",
 		url: "Geben Sie bitte eine gültige URL ein.",
 	}), e
 });

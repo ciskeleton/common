@@ -22,6 +22,7 @@
 		notEqualTo: "Prosím zadajte inú hodnotu, hodnoty sa nesmú rovnať.",
 		nowhitespace: "Prosím nevkladajte medzery.",
 		required: "Povinné zadať.",
+		string: "Prosím, iba písmená, číslice, medzery a interpunkčné znamienka.",
 		url: "URL musí byť platná.",
 	}), e
 });

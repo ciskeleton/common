@@ -22,6 +22,7 @@
 		notEqualTo: "请输入不同的值，值不能相同。",
 		nowhitespace: "请不要输入空格。",
 		required: "此字段是必填的。",
+		string: "仅限字母、数字、空格和标点符号。",
 		url: "请输入有效的URL。",
 	}), e
 });

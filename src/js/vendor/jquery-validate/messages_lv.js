@@ -22,6 +22,7 @@
 		notEqualTo: "Lūdzu, ievadiet citu vērtību, vērtības nedrīkst būt vienādas.",
 		nowhitespace: "Lūdzu, neievadiet tukšumus.",
 		required: "Šis lauks ir obligāts.",
+		string: "Lūdzu, izmantojiet tikai burtus, ciparus, atstarpes un pieturzīmes.",
 		url: "Lūdzu, ievadiet derīgu URL adresi.",
 	}), e
 });

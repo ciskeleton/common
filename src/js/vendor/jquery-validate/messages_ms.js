@@ -22,6 +22,7 @@
 		notEqualTo: "Sila masukkan nilai yang berbeza, nilai tidak boleh sama.",
 		nowhitespace: "Sila jangan masukkan ruang putih",
 		required: "Medan ini diperlukan.",
+		string: "Sila gunakan huruf, nombor, ruang, dan tanda baca sahaja.",
 		url: "Sila masukkan URL yang sah.",
 	}), e
 });

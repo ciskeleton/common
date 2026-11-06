@@ -22,6 +22,7 @@
 		notEqualTo: "Proszę wpisać inną wartość, wartości nie mogą być takie same.",
 		nowhitespace: "Proszę nie wpisywać spacji.",
 		required: "To pole jest wymagane.",
+		string: "Proszę używać wyłącznie liter, cyfr, spacji oraz znaków interpunkcyjnych.",
 		url: "Proszę o podanie prawidłowego URL.",
 	}), e
 });

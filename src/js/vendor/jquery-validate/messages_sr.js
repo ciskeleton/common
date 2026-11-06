@@ -10,8 +10,8 @@
 		equalTo: "Unesite istu vrednost ponovo.",
 		exactlength: e.validator.format("Molimo unesite tačno {0} karaktera."),
 		integer: "Molimo unesite pozitivan ili negativan ceo broj bez decimala.",
-		ipv4: "Унесите исправну IP v4 адресу.",
-		ipv6: "Унесите исправну IP v6 адресу.",
+		ipv4: "Unesite ispravnu IP v4 adresu.",
+		ipv6: "Unesite ispravnu IP v6 adresu.",
 		lettersonly: "Molimo unesite samo reči.",
 		max: e.validator.format("Unesite vrednost manju ili jednaku {0}."),
 		maxWords: e.validator.format("Molimo unesite najviše {0} reči."),
@@ -22,6 +22,7 @@
 		notEqualTo: "Molimo unesite drugačiju vrednost, vrednosti ne smeju biti iste.",
 		nowhitespace: "Molimo ne unosite razmake.",
 		required: "Polje je obavezno.",
+		string: "Molimo vas, samo slova, brojevi, razmaci i znaci interpunkcije.",
 		url: "Unesite ispravan URL.",
 	}), e
 });

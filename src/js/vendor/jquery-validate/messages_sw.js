@@ -22,6 +22,7 @@
 		notEqualTo: "Tafadhali weka thamani tofauti, thamani hazipaswi kuwa sawa.",
 		nowhitespace: "Tafadhali bila nafasi tupu",
 		required: "Sehemu hii inahitajika.",
+		string: "Tafadhali tumia herufi, namba, nafasi, na alama za uandishi pekee.",
 		url: "Tafadhali weka URL sahihi.",
 	}), e
 });
