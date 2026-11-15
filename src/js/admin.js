@@ -152,7 +152,8 @@
 		},
 
 		/**
-		 * Reloads given element.
+		 * Reloads given element(s) from the current page.
+		 *
 		 * @since  1.0.0
 		 * @param  {string}   el        Query selector.
 		 * @param  {boolean}  navbar    Whether to reload navbar.
@@ -160,15 +161,42 @@
 		 * @return {void}
 		 */
 		reload: function(el, navbar, callback) {
-			// If no element is provided, we use "#wrapper".
 			el = el || "#wrapper";
-			if (!el.length) {
-				return false;
-			}
-			if (navbar !== false) {
-				$("#navbar-admin").load(csk.config.currentURL + " #navbar-admin > *");
-			}
-			$(el).load(csk.config.currentURL + " " + el + " > *", callback);
+
+			fetch(window.location.href)
+				.then((response) => {
+					if (!response.ok) {
+						throw new Error("Failed to reload page.");
+					}
+
+					return response.text();
+				})
+				.then((html) => {
+					var doc = new DOMParser().parseFromString(html, "text/html");
+
+					if (navbar !== false) {
+						var newNavbar = doc.querySelector("#navbar-admin");
+						var navbar = document.querySelector("#navbar-admin");
+
+						if (newNavbar && navbar) {
+							navbar.innerHTML = newNavbar.innerHTML;
+						}
+					}
+
+					var newElement = doc.querySelector(el);
+					var element = document.querySelector(el);
+
+					if (newElement && element) {
+						element.innerHTML = newElement.innerHTML;
+					}
+
+					if (typeof callback === "function") {
+						callback.call(element);
+					}
+				})
+				.catch((error) => {
+					console.error(error);
+				});
 		},
 
 		/**
