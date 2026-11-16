@@ -1302,6 +1302,7 @@
 
 	// Things to do when the page is ready!
 	$(document).ready(function() {
+
 		/**
 		 * Extend jQuery.
 		 * @since 1.0.0
@@ -1870,51 +1871,6 @@
 			csk.ui.applyBinding(this);
 		});
 
-		/**
-		 * Dropzone.
-		 * @since 1.0.0
-		 */
-		if (typeof $.fn.dropzone === "function") {
-			$(".dropZone").each(function() {
-				var $that = $(this),
-					href = $that.data("upload");
-				if (!href?.length) {
-					return;
-				}
-				$that.dropzone({
-					url: href,
-					// previewContainer: ".attachment",
-					clickable: "#upload",
-					init: function() {
-						// Remove drag and drop message.
-						this.on("addedfile", function() {
-							$(".dz-message").remove();
-						});
-
-						// Successful?
-						this.on("success", function(file, response) {
-							var file = response.results;
-							if (typeof file !== "object") {
-								return false;
-							}
-							var source = document.getElementById("media-template").innerHTML,
-								template = Handlebars.compile(source),
-								html = template(file);
-							$(html).hide().prependTo(".dropZone").fadeIn("slow");
-						});
-
-						// An error?
-						this.on("error", function(file, response) {
-							csk.ui.alert((response === null || response === void 0 ? void 0 : response.message) || response, "error");
-						});
-
-						// Complete?
-						this.on("complete", function(file) {
-							this.removeFile(file);
-						});
-					}
-				});
-			});
-		}
 	});
+
 })(window.jQuery, window, document);
