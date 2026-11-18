@@ -613,7 +613,8 @@
 				onSuccess = params.onSuccess || null,
 				onError = params.onError || null,
 				html = params.html || false,
-				dataType = params.dataType || undefined;
+				dataType = params.dataType || undefined,
+				silent = params.silent || false;
 
 			// Prevent duplicate requests from the same element.
 			if ($el && $el.length) {
@@ -661,7 +662,7 @@
 					if (typeof onError === "function") {
 						onError.apply(this, arguments);
 					}
-					if (response?.message?.length) {
+					if (response?.message?.length && !silent) {
 						csk.ui.alert(
 							response.message,
 							response.type || response.status || "error",
@@ -852,34 +853,6 @@
 			}).appendTo($form);
 		});
 		$form.appendTo("body").submit();
-	};
-
-	/**
-	 * Skeleton Ping.
-	 * @since 1.0.0
-	 */
-	csk.ping = {
-		init : function(options) {
-			var defaults = {
-				url: "keep-alive",
-				timer: 600000 // 10min
-			};
-			this.options = $.extend(defaults, options);
-			csk.ping._ping.apply(this);
-			return this;
-		},
-		stop : function() {
-			if(this.nextPing) {
-				clearTimeout(this.nextPing);
-			}
-		},
-		_ping : function() {
-			var self = this;
-			this.nextPing = setTimeout(() => {
-				csk.ajax.request(self.options.url, {type: "POST"});
-				csk.ping._ping.apply(self);
-			}, self.options.timer);
-		}
 	};
 
 	/**
@@ -1304,20 +1277,6 @@
 	$(document).ready(function() {
 
 		/**
-		 * Extend jQuery.
-		 * @since 1.0.0
-		 */
-		$.fn.ping = function(method) {
-			if (csk.ping[method]) {
-				return csk.ping[method].apply(this, Array.prototype.slice.call(arguments, 1));
-			} else if (typeof method === "object" || !method) {
-				return csk.ping.init.apply(this, arguments);
-			} else {
-				$.error("The method " +  method + " doesn't exist in $.fn.ping");
-			}
-		};
-
-		/**
 		 * Register JSON helper for Handlebars.
 		 * @since 1.0.0
 		 */
@@ -1325,14 +1284,6 @@
 			Handlebars.registerHelper('json', function(context) {
 				return JSON.stringify(context);
 			});
-		}
-
-		/**
-		 * Start Keep Alive (30min).
-		 * @since 1.0.0
-		 */
-		if (typeof csk.config !== "undefined") {
-			$.fn.ping({url: csk.config.baseURL+"keep-alive", timer: 1800000});
 		}
 
 		/**
