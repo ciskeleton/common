@@ -3111,8 +3111,7 @@ table td > input[type="checkbox"] {
 	color: var(--bs-gray-300);
 	font-size: var(--cs-font-size-default);
 	inline-size: 100%;
-	line-height: 2rem;
-	padding: 0 .5rem;
+	padding-inline: 1rem;
 }
 
 .navbar-admin .nav-link.show {
@@ -3995,6 +3994,11 @@ select.is-valid ~ .select2-container.select2-container--focus .select2-selection
 
 	.navbar-admin .dropdown-menu[data-bs-popper] {
 		margin-top: 0;
+	}
+
+	.navbar-admin .nav-link {
+		line-height: 2rem;
+		padding: .125rem 5rem;
 	}
 }
 
